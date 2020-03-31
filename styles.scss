@@ -1,0 +1,156 @@
+$desat-red: hsl(0, 36%, 70%);
+$grad1: linear-gradient(135deg, hsl(0, 80%, 86%), hsl(0, 74%, 74%));
+$grad2: linear-gradient(135deg, lighten(hsl(0, 80%, 86%), 10), lighten(hsl(0, 74%, 74%), 10));
+$soft-red: hsl(0, 93%, 68%);
+
+$dark-grayish-red: hsl(0, 6%, 24%);
+
+$def-font-fam: 'Josefin Sans', sans-serif;
+
+@mixin placeholder {
+  &::-webkit-input-placeholder {@content}
+  &:-moz-placeholder           {@content}
+  &::-moz-placeholder          {@content}
+  &:-ms-input-placeholder      {@content}  
+}
+
+:root {
+  font-family: $def-font-fam;
+  font-size: 16px;
+}
+
+body {
+  padding: 0px;
+  margin: 0px;
+}
+
+@media screen and (min-width: 1440px) {
+  .container {
+    // display: flex;
+    // justify-content: space-between;
+    display: grid;
+    grid-template-areas: 
+    'header picture'
+    'main picture';
+    background-image: url(images/bg-pattern-desktop.svg);
+    grid-template-rows: 10em auto;
+  }
+  
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    // display: flex;
+    // justify-content: space-between;
+    display: grid;
+    grid-template-areas: 
+    'header'
+    'picture'
+    'main';
+    background-image: url(images/bg-pattern-desktop.svg);
+    grid-template-rows: 10em auto;
+  }
+
+}
+
+
+header {
+  grid-area: header;
+  padding-left: 20%;
+  padding-right: 30%;
+  padding-top: 4em;
+  // padding-bottom: 6em;
+}
+
+.left-content{
+  grid-area: main;
+  padding-left: 20%;
+  padding-right: 30%;
+
+
+  main {
+    h1 {
+      font-size: 64px;
+      letter-spacing: .3em;
+    }
+    h1 span {
+      font-weight: 300;
+      color: $desat-red;
+    }
+    p {
+      color: $desat-red;
+      font-weight: 400;
+      line-height: 1.75em;
+    }
+    form{
+      position: relative;
+      margin-top: 40px;
+      input[type=text] {
+        position: absolute;
+        width: 90%;
+        height: 45px;
+        
+        padding-left: 2em;
+        border-radius: 45px;
+        border: solid 1px lightgrey;
+
+        &:focus {
+          outline:none;
+          border-color: $desat-red;
+        }
+        &:hover {
+          border-color: $desat-red;
+        }
+
+        @include placeholder {
+          font-size: 16px;
+          font-family: $def-font-fam;
+          color: $desat-red;     
+        }
+      }
+      button {
+        // 
+        background-image: $grad1;
+
+        font-family: $def-font-fam;
+        font-weight: 300;
+        color: white;
+        font-size: 24px;
+
+        position: absolute;
+        right: 0px;
+        // z-index: 1;
+
+        border: none;
+        border-radius: 45px;
+        box-shadow: 0px 5px 15px lighten($color: $desat-red, $amount: 10);
+
+        height: 48px;
+        width: 20%;
+        &:focus {
+          outline:none;
+          border: solid 1px $dark-grayish-red;
+        }
+        &:hover {
+          background-image: $grad2;
+        }
+      }
+      p {          
+        font-family: $def-font-fam;
+        color: $soft-red;
+        position: absolute;
+        top: 40px;
+        padding-left: 1.6em;
+      }
+    }
+  }
+
+}
+
+.right-content {
+  grid-area: picture;
+  img {
+    float:right;
+  }
+}
+
